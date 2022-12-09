@@ -117,6 +117,7 @@ public class MineSweapPart extends JFrame
             // could the game be over? when actualMineLeft = 0, game over, you win
             --MineSweapPart.actualMinesLeft;
             System.out.println("actual mine: " + actualMinesLeft);
+            Control.msg_static.setText(Integer.toString(actualMinesLeft));
 
             // Check if acutalMineLeft is 0, if true, game win
             if (MineSweapPart.actualMinesLeft == 0) {
@@ -142,6 +143,7 @@ public class MineSweapPart extends JFrame
             // could the game be over?
             ++MineSweapPart.actualMinesLeft;
             System.out.println("actual mine: " + actualMinesLeft);
+            Control.msg_static.setText(Integer.toString(actualMinesLeft));
           }
           setTitle("MineSweap" + MineSweapPart.guessedMinesLeft +" Mines left");
         }

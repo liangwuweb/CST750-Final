@@ -10,8 +10,12 @@ public class Control  extends JFrame implements ActionListener  {
     private static final int WIDTH = 300;
     private static final int HEIGHT = 200;
 
-    MineSweapPart mineSweap;
-    JButton restartBtn;
+    private MineSweapPart mineSweap;
+    private JButton restartBtn;
+
+    private JLabel msg;
+
+    public static JLabel msg_static;
 
     public Control() {
         setTitle("Control Panel");
@@ -35,6 +39,10 @@ public class Control  extends JFrame implements ActionListener  {
 
         JLabel rowLabel = new JLabel("row: ");
         JLabel colLabel = new JLabel("col: ");
+        JLabel actualMineLabel = new JLabel("Actual mine left: ");
+        msg = new JLabel();
+        msg_static = msg;
+
         JButton setBtn = new JButton("Set");
         restartBtn = new JButton("Restart");
         restartBtn.setBounds(20, 20, 50, 30);
@@ -47,8 +55,9 @@ public class Control  extends JFrame implements ActionListener  {
         this.add(colLabel);
         this.add(colBox);
         this.add(setBtn);
-
         this.add(restartBtn);
+        this.add(actualMineLabel);
+        this.add(msg);
 
         restartBtn.addActionListener(this);
 
