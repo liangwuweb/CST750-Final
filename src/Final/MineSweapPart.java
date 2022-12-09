@@ -23,7 +23,8 @@ public class MineSweapPart extends JFrame
   private static final String EXPOSED_MINE_TEXT = "M";
   
   // visual indication of an exposed Final.MyJButton
-  private static final Color EXPOSED_CELL_BACKGROUND_COLOR = Color.lightGray;
+
+  private static final Color EXPOSED_CELL_BACKGROUND_COLOR = new Color(196,164,132);
   // colors used when displaying the getStateStr() String
   private static final Color EXPOSED_CELL_FOREGROUND_COLOR_MAP[] = {Color.lightGray, Color.blue, Color.green, Color.cyan, Color.yellow, 
                                            Color.orange, Color.pink, Color.magenta, Color.red, Color.red};
@@ -75,6 +76,8 @@ public class MineSweapPart extends JFrame
         
         // register the event handler with this MyJbutton
         btn.addActionListener(new MyListener());
+        btn.setBackground(new Color(132, 192, 17));
+        btn.setBorder(BorderFactory.createLineBorder(new Color(160,82,45)));
         
         // add the Final.MyJButton to the GridLayout collection
         this.add(btn);
@@ -93,6 +96,7 @@ public class MineSweapPart extends JFrame
         // used to determine if ctrl or alt key was pressed at the time of mouse action
         int mod = event.getModifiers();
         MyJButton mjb = (MyJButton)event.getSource();
+
         
         // is the MyJbutton that the mouse action occurred is flagged
         boolean flagged = mjb.getText().equals(MineSweapPart.UNEXPOSED_FLAGGED_CELL_TEXT);
@@ -166,7 +170,7 @@ public class MineSweapPart extends JFrame
         // what else do you need to adjust?
         // could the game be over? game over
         //return;
-        JOptionPane.showMessageDialog(null, "Sorry, you lost! \n You found ");
+        JOptionPane.showMessageDialog(null, "Sorry, you lost!");
         running = false;
       }
       
@@ -237,10 +241,10 @@ public class MineSweapPart extends JFrame
   // end nested private class
 
 
-  public static void main(String[] args)
-  {
-    new MineSweapPart();
-  }
+//  public static void main(String[] args)
+//  {
+//    new MineSweapPart();
+//  }
 
   
   //************************************************************************************************
