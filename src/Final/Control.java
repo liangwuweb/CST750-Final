@@ -72,6 +72,7 @@ public class Control  extends JFrame implements ActionListener  {
            mineSweap.setVisible(false);
 
            mineSweap = new MineSweapPart();
+           mineSweap.setGuessedMinesLeft(8);
 
            //SwingUtilities.updateComponentTreeUI(this);
        }
