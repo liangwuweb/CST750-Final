@@ -12,9 +12,9 @@ public class MineSweapPart extends JFrame
   private static final long serialVersionUID = 1L;
   private static final int WINDOW_HEIGHT = 760;
   private static final int WINDOW_WIDTH = 760;
-  private static final int TOTAL_MINES = 8;
-  
-  
+  private static final int TOTAL_MINES = 13;
+
+
   private static int guessedMinesLeft;
   private static int actualMinesLeft;
 
@@ -22,7 +22,9 @@ public class MineSweapPart extends JFrame
   //private static final ImageIcon INITIAL_CELL_ICON = new ImageIcon();
   private static final String UNEXPOSED_FLAGGED_CELL_TEXT = "@";
   private static final ImageIcon UNEXPOSED_FLAGGED_CELL_ICON = new ImageIcon("flag.png");
-  private static final String EXPOSED_MINE_TEXT = "M";
+
+  private static final ImageIcon EXPOSED_MINE_ICON = new ImageIcon("mine.png");
+  //private static final String EXPOSED_MINE_TEXT = "M";
   
   // visual indication of an exposed Final.MyJButton
 
@@ -33,8 +35,8 @@ public class MineSweapPart extends JFrame
 
   
   // holds the "number of mines in perimeter" value for each Final.MyJButton
-  private static final int MINEGRID_ROWS = 10;
-  private static final int MINEGRID_COLS = 10;
+  private static final int MINEGRID_ROWS = 16;
+  private static final int MINEGRID_COLS = 16;
   private int[][] mineGrid = new int[MINEGRID_ROWS][MINEGRID_COLS]; // gird col and row
 
   private static final int NO_MINES_IN_PERIMETER_MINEGRID_VALUE = 0; // value for no mine
@@ -86,7 +88,7 @@ public class MineSweapPart extends JFrame
         //this.mineGrid[mgr][mgc] = NO_MINES_IN_PERIMETER_MINEGRID_VALUE;
         
         // create a Final.MyJButton that will be at location (mgr, mgc) in the GridLayout
-        //MyJButton btn = new MyJButton(Integer.toString(mineGrid[mgr][mgc]), mgr, mgc);
+        //MyJButton btn = new MyJButton(Integer.toString(mineGrid[mgr][mgc]), mgr, mgc); // !!!!show all the number, for test
         MyJButton btn = new MyJButton(INITIAL_CELL_TEXT, mgr, mgc);
         
         // register the event handler with this MyJbutton
@@ -94,8 +96,6 @@ public class MineSweapPart extends JFrame
         btn.setBackground(new Color(132, 192, 17));
         btn.setOpaque(true);
         btn.setBorder(BorderFactory.createLineBorder(new Color(160,82,45)));
-//        btn.setIcon(icon);
-
         
         // add the Final.MyJButton to the GridLayout collection
         this.add(btn);
@@ -169,8 +169,7 @@ public class MineSweapPart extends JFrame
             System.out.println("actual mine: " + actualMinesLeft);
             Control.msg_static.setText(Integer.toString(actualMinesLeft));
 
-            // could the game be over?
-            // In my program, the user can only add flags less than or equal to the number of total mines,
+            // the user can only add flags less than or equal to the number of total mines,
             // so it's impossible for user to win when they remove a flag.
           }
           setTitle("MineSweap" + MineSweapPart.guessedMinesLeft +" Mines left");
@@ -208,7 +207,8 @@ public class MineSweapPart extends JFrame
              MyJButton mine = (MyJButton) (mjb.getParent().getComponent(linearIndex));
              mine.setBackground(EXPOSED_CELL_BACKGROUND_COLOR);
              mine.setForeground(EXPOSED_CELL_FOREGROUND_COLOR_MAP[mineGrid[mine.ROW][mine.COL]]);
-             mine.setText(getGridValueStr(mine.ROW, mine.COL));
+             //mine.setText(getGridValueStr(mine.ROW, mine.COL));
+             mine.setIcon(EXPOSED_MINE_ICON);
            }
           }
         }
@@ -425,9 +425,10 @@ public class MineSweapPart extends JFrame
               this.mineGrid[row][col] <= ALL_MINES_IN_PERIMETER_MINEGRID_VALUE )
       return "" + this.mineGrid[row][col];
     
-    // this Final.MyJButton in a mine
+    // this Final.MyJButton in a mine, return empty string, so we can just display the mine image
     else // this.mineGrid[row][col] = IS_A_MINE_IN_GRID_VALUE
-      return MineSweapPart.EXPOSED_MINE_TEXT;
+      return INITIAL_CELL_TEXT;
+
   }
   
 }

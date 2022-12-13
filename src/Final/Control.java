@@ -31,30 +31,30 @@ public class Control  extends JFrame implements ActionListener  {
 
     private void createContents()
     {
-        JTextField colBox;
-        JTextField rowBox;
+//        JTextField colBox;
+//        JTextField rowBox;
 
-        colBox = new JTextField(2);
-        rowBox = new JTextField(2);
+//        colBox = new JTextField(2);
+//        rowBox = new JTextField(2);
 
-        JLabel rowLabel = new JLabel("row: ");
-        JLabel colLabel = new JLabel("col: ");
+//        JLabel rowLabel = new JLabel("row: ");
+//        JLabel colLabel = new JLabel("col: ");
         JLabel actualMineLabel = new JLabel("Actual mine left: ");
         msg = new JLabel();
         msg_static = msg;
 
-        JButton setBtn = new JButton("Set");
+        //JButton setBtn = new JButton("Set");
         restartBtn = new JButton("Restart");
         restartBtn.setBounds(20, 20, 50, 30);
         restartBtn.setBackground(Color.green);
-        setBtn.setBackground(Color.orange);
-        setBtn.setBounds(100, 100, 50, 30);
+//        setBtn.setBackground(Color.orange);
+//        setBtn.setBounds(100, 100, 50, 30);
 
-        this.add(rowLabel);
-        this.add(rowBox);
-        this.add(colLabel);
-        this.add(colBox);
-        this.add(setBtn);
+//        this.add(rowLabel);
+//        this.add(rowBox);
+//        this.add(colLabel);
+//        this.add(colBox);
+        //this.add(setBtn);
         this.add(restartBtn);
         this.add(actualMineLabel);
         this.add(msg);
@@ -66,13 +66,12 @@ public class Control  extends JFrame implements ActionListener  {
 
     public void actionPerformed(ActionEvent e) {
        if(e.getSource() == restartBtn) {
-           System.out.println("restartBtn clicked!");
+           // System.out.println("restartBtn clicked!");
 
            this.remove(mineSweap);
            mineSweap.setVisible(false);
 
            mineSweap = new MineSweapPart();
-           mineSweap.setGuessedMinesLeft(8);
 
            //SwingUtilities.updateComponentTreeUI(this);
        }
