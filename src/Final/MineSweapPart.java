@@ -1,5 +1,11 @@
 package Final;
 
+  //**********************************
+//*                                  *//
+//*          FINAL VERSION           *//
+//*                                  *//
+  // *********************************
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -24,7 +30,6 @@ public class MineSweapPart extends JFrame
   private static final ImageIcon UNEXPOSED_FLAGGED_CELL_ICON = new ImageIcon("flag.png");
 
   private static final ImageIcon EXPOSED_MINE_ICON = new ImageIcon("mine.png");
-  //private static final String EXPOSED_MINE_TEXT = "M";
   
   // visual indication of an exposed Final.MyJButton
 
@@ -65,10 +70,6 @@ public class MineSweapPart extends JFrame
     this.setLayout(new GridLayout(MINEGRID_ROWS, MINEGRID_COLS, 0, 0));
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-    // set the grid of MyJbuttons
-    //this.createContents();
-
-
     
     // place MINES number of mines in sGrid and adjust all of the "mines in perimeter" values
     this.setMines();
@@ -83,12 +84,9 @@ public class MineSweapPart extends JFrame
     for (int mgr = 0; mgr < mineGrid.length; ++mgr)
     {  
       for (int mgc = 0; mgc < mineGrid[mgr].length; ++mgc)
-      {  
-        // set sGrid[mgr][mgc] entry to 0 - no mines in it's perimeter
-        //this.mineGrid[mgr][mgc] = NO_MINES_IN_PERIMETER_MINEGRID_VALUE;
+      {
         
         // create a Final.MyJButton that will be at location (mgr, mgc) in the GridLayout
-        //MyJButton btn = new MyJButton(Integer.toString(mineGrid[mgr][mgc]), mgr, mgc); // !!!!show all the number, for test
         MyJButton btn = new MyJButton(INITIAL_CELL_TEXT, mgr, mgc);
         
         // register the event handler with this MyJbutton
@@ -117,7 +115,6 @@ public class MineSweapPart extends JFrame
 
         
         // is the MyJbutton that the mouse action occurred is flagged
-        //boolean flagged = mjb.getText().equals(MineSweapPart.UNEXPOSED_FLAGGED_CELL_TEXT);
         boolean flagged =  mjb.getDesc().equals(MineSweapPart.UNEXPOSED_FLAGGED_CELL_TEXT);
 
         
@@ -127,7 +124,6 @@ public class MineSweapPart extends JFrame
         // flag a cell : ctrl + left click
         if ( !flagged && !exposed && (mod & ActionEvent.CTRL_MASK) != 0 && MineSweapPart.guessedMinesLeft > 0 )
         {
-          //mjb.setText(MineSweapPart.UNEXPOSED_FLAGGED_CELL_TEXT);
           mjb.setDesc(MineSweapPart.UNEXPOSED_FLAGGED_CELL_TEXT);
           mjb.setIcon(MineSweapPart.UNEXPOSED_FLAGGED_CELL_ICON);
           --MineSweapPart.guessedMinesLeft;
@@ -155,7 +151,6 @@ public class MineSweapPart extends JFrame
         // unflag a cell : alt + left click
         else if ( flagged && !exposed && (mod & ActionEvent.ALT_MASK) != 0 && MineSweapPart.guessedMinesLeft >= 0 && MineSweapPart.guessedMinesLeft < TOTAL_MINES)
         {
-          //mjb.setText(INITIAL_CELL_TEXT);
           mjb.setDesc(INITIAL_CELL_TEXT);
           mjb.setIcon(null);
           ++MineSweapPart.guessedMinesLeft;
@@ -169,7 +164,7 @@ public class MineSweapPart extends JFrame
             System.out.println("actual mine: " + actualMinesLeft);
             Control.msg_static.setText(Integer.toString(actualMinesLeft));
 
-            // the user can only add flags less than or equal to the number of total mines,
+            // In this program, the user can only add flags less than or equal to the number of total mines,
             // so it's impossible for user to win when they remove a flag.
           }
           setTitle("MineSweap" + MineSweapPart.guessedMinesLeft +" Mines left");
@@ -195,10 +190,9 @@ public class MineSweapPart extends JFrame
       
       // if the Final.MyJButton that was just exposed is a mine
       if ( mineGrid[mjb.ROW][mjb.COL] == IS_A_MINE_IN_MINEGRID_VALUE )
-      {  
+      {
         // what else do you need to adjust?
         // could the game be over? game over
-        //return;
         // expose all the mines after losing
         for (int i = 0; i < mineGrid.length; i++) {
           for (int j = 0; j < mineGrid[i].length; j++) {
@@ -262,8 +256,6 @@ public class MineSweapPart extends JFrame
           }
 
           if (r != -1 && c != -1) {
-            // Hint: MyJButton mjbtn = (MyJButton)mjb.getParent().getComponent(index);
-            // where index is a linearized version of a row, col index pair
             int linearIndex = (r *  MINEGRID_COLS) + c;
             MyJButton btn = (MyJButton) (mjb.getParent().getComponent(linearIndex));
 
@@ -316,10 +308,6 @@ public class MineSweapPart extends JFrame
     // Iterate each cell and check its perimeter
     for (int r = 0; r < mineGrid.length; r++) {
       for (int c = 0; c < mineGrid[r].length; c++) {
-//        System.out.print(mineGrid[r][c] + " ");
-//        if(c ==  MINEGRID_COLS - 1) {
-//          System.out.println();
-//        }
 
         if (mineGrid[r][c] != 9) {
 
@@ -398,17 +386,6 @@ public class MineSweapPart extends JFrame
             }
           }
 
-        }
-      }
-    }
-
-    // Show Grid Map in console
-    for (int i = 0; i < mineGrid.length; i++) {
-      for (int j = 0; j < mineGrid[i].length; j++) {
-
-        System.out.print(mineGrid[i][j] + " ");
-        if(j ==  MINEGRID_COLS - 1) {
-          System.out.println();
         }
       }
     }
